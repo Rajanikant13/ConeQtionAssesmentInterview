@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coneqstion Assignment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>   
+</head>
+<body onload="displayTable()" >
+    <div class="container">
+        <h1>New Employee Registration Form</h1>
+        <form class="form">
+            <div class="form-group">
+                <label for="name">Employee ID</label>
+                <input type="text" class="form-control" id="empId" placeholder="Employee ID" required>
+              </div>
+            <div class="form-group">
+                <label for="name">Employee Name</label>
+                <input type="text" class="form-control" id="empName" placeholder="Employee Full Name" required>
+              </div>
+              <div class="form-group">
+                <label for="dob">Date Of Birth</label>
+                <input type="date" class="form-control" id="dob" placeholder="Date Of Birth" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Gender</label>
+                <input type="radio"  id="gender" required value="MALE">MALE
+                <input type="radio" id="gender" required value="FEMALE">FEMALE
+            </div>
+           
+            <div class="form-group">
+                <label for="salary">Mobile No.</label>
+                <input type="number" class="form-control" id="mobNo" placeholder="Mobile No." required>
+            </div>
+            <div class="form-group">
+                <label for="dob">DepartMent</label>
+                <select class="form-control" id="department" required>
+                    <option value="hr">HR</option>
+                    <option value="it">IT</option>
+                    <option value="management">Management</option>
+                  </select>
+            </div>
+          <button class="btn btn-info" type="button" onclick="validate()" >Submit</button>
+          
+      </div>
+
+     <div class="container">
+        <table class="table">
+            <thead>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>Mobile no</th>
+                <th>Gender</th>
+                <th>Date Of Birth</th>
+                <th>DepartMent</th>
+            </thead>
+            <tbody id="t_body">
+            
+            </tbody>
+          </table>
+     </div>
+
+</body>
+<script src="script.js">
+</script>
+</html>
+
