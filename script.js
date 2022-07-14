@@ -1,104 +1,77 @@
+
 function formatPhoneNumber(phoneNumberString) {
-    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
-    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
-    if (match) {
-       return '(' + match[1] + ') ' + match[2] + '-' + match[3]
-    
-    }
-    return null
+  var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+  if (match) {
+     return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+  
   }
+  return null
+}
 
-  let employees=[];
 
+function validate(){
+  let empId=document.getElementById('empId').value;
+  let empName=document.getElementById('empName').value;
+  let mobNo=formatPhoneNumber(document.getElementById('mobNo').value)
+  let dob=document.getElementById('dob').value;
+  let gender=document.getElementById('gender').value;
+  let department=document.getElementById('department').value;
+  let bDate=new Date(dob);
+  let dd=bDate.getMonth()+"-"+bDate.getDate()+"-"+bDate.getFullYear()
 
-  function validate(){
-    let id=document.getElementById('empId').value;
-    let empName=document.getElementById('empName').value;
-    let mobNo=formatPhoneNumber(document.getElementById('mobNo').value)
-    let dob=document.getElementById('dob').value;
-    let gender=document.getElementById('gender').value;
-    let department=document.getElementById('department').value;
-    let bDate=new Date(dob);
-    let dd=bDate.getMonth()+"-"+bDate.getDate()+"-"+bDate.getFullYear()
-
-   let employee={
-      empId:id,
-      empName:empName,
-      mobNo:mobNo,
-      gender:gender,
-      dob:dd,
-      department:department,
-    }
-
-    
-    employees.push(employee)
-    displayTable()
-    alert("Employee Added succesfully")
+  
+  if(empId!="" && empName!="" && mobNo!="" && dob!="" ){
+   createtable(empId,empName,mobNo,gender,dd,department)
   }
-
-  function displayTable(){
-    let tbody=document.getElementById("t_body")
-    
-   if(tbody.childElementCount>0){
-    let trs=document.getElementsByClassName('tr')
-    for(let i=0;i<=trs.length;i++){
-      trs[i].remove()
-    }
-   }
-   createtable();
-
+  else{
+      alert("Plz Fill All Details");
   }
+}
 
-  function createtable(){
-    for(let i=0;i<=employees.length;i++){
-     
-      let tbody= document.getElementById("t_body")
-      let tr=document.createElement("tr")
-      let td1=document.createElement("td")
-      let td2=document.createElement("td")
-      let td3=document.createElement("td")
-      let td4=document.createElement("td")
-      let td5=document.createElement("td")
-      let td6=document.createElement("td")
+function createtable(empId,empName,mobNo,gender,dd,department){
+  let tbody= document.getElementById("t_body")
+  
+  let tr=document.createElement("tr")
+  let td1=document.createElement("td")
+  let td2=document.createElement("td")
+  let td3=document.createElement("td")
+  let td4=document.createElement("td")
+  let td5=document.createElement("td")
+  let td6=document.createElement("td")
 
-      tr.classList="tr";
+  td1.innerHTML=empId;
+  td2.innerHTML=empName;
+  td3.innerHTML=mobNo;
+  td4.innerHTML=gender;
+  td5.innerHTML=dd;
+  td6.innerHTML=department;
 
-      td1.innerHTML=employees[i].empId;
-      td2.innerHTML=employees[i].empName;
-      td3.innerHTML=employees[i].mobNo;
-      td4.innerHTML=employees[i].gender;
-      td5.innerHTML=employees[i].dob;
-      td6.innerHTML=employees[i].department;
+  tr.appendChild(td1);
+  tr.appendChild(td2);
+  tr.appendChild(td3);
+  tr.appendChild(td4);
+  tr.appendChild(td5);
+  tr.appendChild(td6);
 
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-      tr.appendChild(td6);
+  tbody.appendChild(tr)
+}
 
-    tbody.appendChild(tr)
-    }
-  }
-  function searchname(){
-    let  keyword=document.getElementById("search").value;
-    let result=document.getElementById('result');
-    if(result.hasChildNodes()){
-      result.removeChild()
-    }
+searchEmp=()=>{
+let keyword=document.getElementById("searchbox").value.toUpperCase();
+let tbody= document.getElementById("t_body");
+let tr=tbody.getElementsByTagName('tr');
 
-    for(let i=0;i<=employees.length;i++){
-
-        console.log(employees[i].empName);
-
-      if (keyword===employees[i].empName) {
-     
-        console.log(employees[i].empName);
-
-        let p=document.createElement("p");
-        p.innerHTML=employees[i].empName
-        document.getElementById('result').appendChild(p)
+for(let i=0;i<tr.length;i++){
+  let td=tr[i].getElementsByTagName('td')[1];
+  if(td){
+      let textvalue=td.textContent || td.innerHTML;
+      if(textvalue.toUpperCase().indexOf(keyword)>-1){
+          tr[i].style.display="";
+      }else{
+          tr[i].style.display="none";
       }
-    }
-    
   }
+}
+
+}

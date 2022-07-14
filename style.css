@@ -1,0 +1,11 @@
+.form{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5%;
+}
+.table{
+    border: 1px solid black;
+}
+h1,h3{
+    text-align: center;
+}
