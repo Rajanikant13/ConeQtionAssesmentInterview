@@ -22,7 +22,7 @@ function formatPhoneNumber(phoneNumberString) {
     let dd=bDate.getMonth()+"-"+bDate.getDate()+"-"+bDate.getFullYear()
 
    let employee={
-      empid:id,
+      empId:id,
       empName:empName,
       mobNo:mobNo,
       gender:gender,
@@ -37,9 +37,23 @@ function formatPhoneNumber(phoneNumberString) {
   }
 
   function displayTable(){
+    let tbody=document.getElementById("t_body")
+    
+   if(tbody.childElementCount>0){
+    let trs=document.getElementsByClassName('tr')
+    for(let i=0;i<=trs.length;i++){
+      trs[i].remove()
+    }
+   }
+   createtable();
+
+  }
+
+  function createtable(){
     for(let i=0;i<=employees.length;i++){
-      let tbody=document.getElementById("t_body")
-      console.log(tbody);
+     
+      let tbody= document.getElementById("t_body")
+      let tr=document.createElement("tr")
       let td1=document.createElement("td")
       let td2=document.createElement("td")
       let td3=document.createElement("td")
@@ -47,21 +61,44 @@ function formatPhoneNumber(phoneNumberString) {
       let td5=document.createElement("td")
       let td6=document.createElement("td")
 
-      td1.innerHTML=employees[i].empid
-      td2.innerHTML=employees[i].empName
-      td3.innerHTML=employees[i].mobNo
-      td4.innerHTML=employees[i].gender
-      td5.innerHTML=employees[i].dob
-      td6.innerHTML=employees[i].department
+      tr.classList="tr";
 
-      tbody.appendChild(td1);
-      tbody.appendChild(td2);
-      tbody.appendChild(td3);
-      tbody.appendChild(td4);
-      tbody.appendChild(td5);
-      tbody.appendChild(td6);
+      td1.innerHTML=employees[i].empId;
+      td2.innerHTML=employees[i].empName;
+      td3.innerHTML=employees[i].mobNo;
+      td4.innerHTML=employees[i].gender;
+      td5.innerHTML=employees[i].dob;
+      td6.innerHTML=employees[i].department;
 
-      document.appendChild(tbody)
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tr.appendChild(td5);
+      tr.appendChild(td6);
+
+    tbody.appendChild(tr)
+    }
+  }
+  function searchname(){
+    let  keyword=document.getElementById("search").value;
+    let result=document.getElementById('result');
+    if(result.hasChildNodes()){
+      result.removeChild()
     }
 
+    for(let i=0;i<=employees.length;i++){
+
+        console.log(employees[i].empName);
+
+      if (keyword===employees[i].empName) {
+     
+        console.log(employees[i].empName);
+
+        let p=document.createElement("p");
+        p.innerHTML=employees[i].empName
+        document.getElementById('result').appendChild(p)
+      }
+    }
+    
   }

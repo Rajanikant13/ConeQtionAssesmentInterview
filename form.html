@@ -11,8 +11,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>   
 </head>
-<body onload="displayTable()" >
-    <div class="container">
+<body>
+  <div class="container row">
+    <div class="col-lg-6">
         <h1>New Employee Registration Form</h1>
         <form class="form">
             <div class="form-group">
@@ -28,9 +29,11 @@
                 <input type="date" class="form-control" id="dob" placeholder="Date Of Birth" required>
             </div>
             <div class="form-group">
-                <label for="exampleFormControlInput1">Gender</label>
-                <input type="radio"  id="gender" required value="MALE">MALE
-                <input type="radio" id="gender" required value="FEMALE">FEMALE
+                <label for="exampleFormControlInput1" >Gender</label>
+                <select  class="form-control" id="gender" required>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+                </select>
             </div>
            
             <div class="form-group">
@@ -48,8 +51,7 @@
           <button class="btn btn-info" type="button" onclick="validate()" >Submit</button>
           
       </div>
-
-     <div class="container">
+      <div class="col-lg-6">
         <table class="table">
             <thead>
                 <th>Employee Id</th>
@@ -64,7 +66,14 @@
             </tbody>
           </table>
      </div>
-
+  </div>
+  <br><br>
+<div class="container">
+    <input type="text" id="search" >
+    <button class="btn btn-primary" type="button" >Search</button>
+    <div id="result"></div>
+</div>
+    
 </body>
 <script src="script.js">
 </script>
